@@ -1,0 +1,25 @@
+Name:                wavelet
+Version:             0.1
+Synopsis:            Wavelet library
+-- Description:         
+License:             BSD3
+License-file:        LICENSE
+Author:              Noam Lewis
+Maintainer:          jones.noamle@gmail.com
+-- Copyright:           
+Stability:           Experimental
+Category:            Math
+Build-type:          Simple
+
+-- Extra-source-files:  
+Cabal-version:       >=1.2
+
+
+library
+  exposed-modules: Math.Wavelet
+  hs-Source-Dirs: src
+  build-depends: base >=4 && <5, dsp
+  ghc-options: -Wall -O2
+  -- Other-modules:       
+  -- Build-tools:         
+  
