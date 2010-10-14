@@ -18,7 +18,7 @@ Cabal-version:       >=1.2
 library
   exposed-modules: Math.Wavelet
   hs-Source-Dirs: src
-  build-depends: base >=4 && <5, dsp
+  build-depends: base >=4 && <5, dsp, array >= 0.3
   ghc-options: -Wall -O2
   -- Other-modules:       
   -- Build-tools:         

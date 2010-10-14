@@ -1,11 +1,20 @@
-module Wavelet where
+module Math.Wavelet where
 
-
-import Data.Array
+import Data.Complex(Complex)
+import Data.Function(on)
+import qualified Data.Array as A
 import DSP.FastConvolution(fast_conv)
-import qualified DSP.Basic as DSPB
+import Control.Applicative(liftA2)
 
+aLength :: (A.Ix i, Num i) => A.Array i e -> i
+aLength = liftA2 (-) snd fst . A.bounds
 
-dwt x lo_d hi_d = (cA, cD)
-    where cA = downsample 2 . fast_conv lo_d $ x
-          cD = downsample 2 . fast_conv hi_d $ x
+downsample :: (A.Ix i, Integral i) => i -> A.Array i e1 -> A.Array i e1
+downsample k x = A.ixmap (0, n `div` k) (*k) x
+    where n = aLength x
+
+dwt :: (RealFloat b) => A.Array Int (Complex b) 
+    -> A.Array Int (Complex b) 
+    -> A.Array Int (Complex b)
+    -> (A.Array Int (Complex b), A.Array Int (Complex b))
+dwt x = (,) `on` (downsample 2 . fast_conv x)
